@@ -1,0 +1,48 @@
+#homepagebackground {
+    background-color: #d3d8e0;
+}
+
+#contentheader {
+    background-color: #d3d8e0;
+}
+
+#totalcontacts {
+
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #040404), color-stop(1, #0089db)) !important;
+    background: -ms-linear-gradient(bottom, #040404, #0089db) !important;
+    background: -moz-linear-gradient(center bottom, #040404 0%, #0089db 100%) !important;
+    background: -o-linear-gradient(#040404, #0073b7) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
+    color: #fff;
+
+}
+
+#currentevents {
+
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #040404), color-stop(1, #7507ec)) !important;
+    background: -ms-linear-gradient(bottom, #040404, #7507ec) !important;
+    background: -moz-linear-gradient(center bottom, #040404 0%, #7507ec 100%) !important;
+    background: -o-linear-gradient(#040404, #7507ec) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
+    color: #fff;
+}
+
+#totalvacancies {
+
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #040404), color-stop(1, #81ceaa)) !important;
+    background: -ms-linear-gradient(bottom, #040404, #81ceaa) !important;
+    background: -moz-linear-gradient(center bottom, #040404 0%, #81ceaa 100%) !important;
+    background: -o-linear-gradient(#040404, #81ceaa) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
+    color: #fff;
+}
+
+#totalusers {
+
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #040404), color-stop(1, #ff5e12)) !important;
+    background: -ms-linear-gradient(bottom, #040404, #ff5e12) !important;
+    background: -moz-linear-gradient(center bottom, #040404 0%, #ff5e12 100%) !important;
+    background: -o-linear-gradient(#040404, #ff5e12) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0089db', endColorstr='#0073b7', GradientType=0) !important;
+    color: #fff;
+}
