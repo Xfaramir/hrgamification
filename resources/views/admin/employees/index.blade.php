@@ -8,7 +8,7 @@
         <a href="{{ route('admin.employees.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
         <a href="#" class="btn btn-warning" style="margin-left:5px;" data-toggle="modal" data-target="#myModal">@lang('quickadmin.qa_csvImport')</a>
         @include('csvImport.modal', ['model' => 'Employee'])
-        
+
     </p>
     @endcan
 
@@ -59,7 +59,7 @@
                         @endif
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @if (count($employees) > 0)
                         @foreach ($employees as $employee)
@@ -138,7 +138,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('employee_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.employees.mass_destroy') }}'; @endif

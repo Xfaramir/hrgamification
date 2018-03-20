@@ -47,7 +47,8 @@ class HomeController extends Controller
         $totalusers = User::all()->count();
         $totalemployees = Employee::all()->count();
         $asset = Asset::all()->count();
+        $vacancies = Vacancy::All();
 
-        return view('home', compact('employee', 'contacts', 'calendar', 'vacancy', 'totalusers', 'totalemployees','asset'));
+        return view('home', compact('employee', 'contacts', 'calendar', 'vacancy', 'totalusers', 'totalemployees','asset','vacancies'));
     }
 }

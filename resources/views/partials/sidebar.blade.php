@@ -1,43 +1,20 @@
 @inject('request', 'Illuminate\Http\Request')
-<!-- Left side column. contains the logo and sidebar -->
+<!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
-
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
-        <!-- Sidebar user panel (optional) -->
-        @if (! Auth::guest())
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/>
-                </div>
-                <div class="pull-left info">
-                    <p>{{ Auth::user()->name }}</p>
-                    <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}
-                    </a>
-                </div>
-            </div>
-    @endif
-
-    <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control"
-                       placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
-                <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i
-                            class="fa fa-search"></i></button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-
-        <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
+            <li>
+                <!-- Status -->
+                <a href="#"><i class="fa fa-circle text-success"></i> {{ Auth::user()->name }}
+                </a>
+            </li>
+            <li>
+                <select class="searchable-field form-control"></select>
+            </li>
 
             <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                <a href="{{ url('/') }}">
+                <a href="{{ url('/home') }}">
                     <i class="fa fa-wrench"></i>
                     <span class="title">@lang('quickadmin.qa_dashboard')</span>
                 </a>
@@ -226,40 +203,6 @@
                     </ul>
                 </li>
             @endcan
-            @can('contact_management_access')
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-phone-square"></i>
-                        <span class="title">@lang('quickadmin.contact-management.title')</span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
-
-                        @can('contact_company_access')
-                            <li class="{{ $request->segment(2) == 'contact_companies' ? 'active active-sub' : '' }}">
-                                <a href="{{ route('admin.contact_companies.index') }}">
-                                    <i class="fa fa-building-o"></i>
-                                    <span class="title">
-                                @lang('quickadmin.contact-companies.title')
-                            </span>
-                                </a>
-                            </li>
-                        @endcan
-                        @can('contact_access')
-                            <li class="{{ $request->segment(2) == 'contacts' ? 'active active-sub' : '' }}">
-                                <a href="{{ route('admin.contacts.index') }}">
-                                    <i class="fa fa-user-plus"></i>
-                                    <span class="title">
-                                @lang('quickadmin.contacts.title')
-                            </span>
-                                </a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
-            @endcan
             @can('expense_management_access')
                 <li class="treeview">
                     <a href="#">
@@ -317,6 +260,40 @@
                                     <i class="fa fa-line-chart"></i>
                                     <span class="title">
                                 @lang('quickadmin.monthly-report.title')
+                            </span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('contact_management_access')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-phone-square"></i>
+                        <span class="title">@lang('quickadmin.contact-management.title')</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        @can('contact_company_access')
+                            <li class="{{ $request->segment(2) == 'contact_companies' ? 'active active-sub' : '' }}">
+                                <a href="{{ route('admin.contact_companies.index') }}">
+                                    <i class="fa fa-building-o"></i>
+                                    <span class="title">
+                                @lang('quickadmin.contact-companies.title')
+                            </span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('contact_access')
+                            <li class="{{ $request->segment(2) == 'contacts' ? 'active active-sub' : '' }}">
+                                <a href="{{ route('admin.contacts.index') }}">
+                                    <i class="fa fa-user-plus"></i>
+                                    <span class="title">
+                                @lang('quickadmin.contacts.title')
                             </span>
                                 </a>
                             </li>
@@ -561,15 +538,6 @@
                                 </a>
                             </li>
                         @endcan
-
-                        @can('selfdocument_access')
-                            <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
-                                <a href="{{ route('auth.change_password') }}">
-                                    <i class="fa fa-key"></i>
-                                    <span class="title">@lang('quickadmin.qa_change_password')</span>
-                                </a>
-                            </li>
-                        @endcan
                     </ul>
                 </li>
             @endcan
@@ -661,37 +629,13 @@
                     </ul>
                 </li>
             @endcan
-            @can('stripe_upgrade_access')
-
-                @if(! Auth::user()->premium)
-                    <li class="{{ $request->segment(2) == 'stripe_upgrades' ? 'active' : '' }}">
-                        <a href="{{ route('admin.stripe_upgrades.index') }}">
-                            <i class="fa fa-cc-stripe"></i>
-                            <span class="title">@lang('quickadmin.stripe-upgrade.title')</span>
-                        </a>
-                    </li>
-                @endif
-            @endcan
-
-            @can('stripe_transaction_access')
-                <li class="{{ $request->segment(2) == 'stripe_transactions' ? 'active' : '' }}">
-                    <a href="{{ route('admin.stripe_transactions.index') }}">
-                        <i class="fa fa-cc-stripe"></i>
-                        <span class="title">@lang('quickadmin.stripe-transactions.title')</span>
+            @can('internal_notification_access')
+                <li class="{{ $request->segment(2) == 'internal_notifications' ? 'active' : '' }}">
+                    <a href="{{ route('admin.internal_notifications.index') }}">
+                        <i class="fa fa-briefcase"></i>
+                        <span class="title">@lang('quickadmin.internal-notifications.title')</span>
                     </a>
                 </li>
-            @endcan
-
-            @can('internal_notification_access')
-
-                @if(! Auth::user()->premium)
-                    <li class="{{ $request->segment(2) == 'internal_notifications' ? 'active' : '' }}">
-                        <a href="{{ route('admin.internal_notifications.index') }}">
-                            <i class="fa fa-briefcase"></i>
-                            <span class="title">@lang('quickadmin.internal-notifications.title')</span>
-                        </a>
-                    </li>
-                @endif
             @endcan
 
 
@@ -709,20 +653,17 @@
                             <i class="fa fa-line-chart"></i>
                             <span class="title">Employees Stats</span>
                         </a>
-                    </li>
-                    <li class="{{ $request->is('/reports/contact-stats') }}">
+                    </li>   <li class="{{ $request->is('/reports/contact-stats') }}">
                         <a href="{{ url('/admin/reports/contact-stats') }}">
                             <i class="fa fa-line-chart"></i>
                             <span class="title">Contact Stats</span>
                         </a>
-                    </li>
-                    <li class="{{ $request->is('/reports/asset-stats') }}">
+                    </li>   <li class="{{ $request->is('/reports/asset-stats') }}">
                         <a href="{{ url('/admin/reports/asset-stats') }}">
                             <i class="fa fa-line-chart"></i>
                             <span class="title">Asset Stats</span>
                         </a>
-                    </li>
-                    <li class="{{ $request->is('/reports/job-candidates') }}">
+                    </li>   <li class="{{ $request->is('/reports/job-candidates') }}">
                         <a href="{{ url('/admin/reports/job-candidates') }}">
                             <i class="fa fa-line-chart"></i>
                             <span class="title">Job Candidates</span>
@@ -745,10 +686,18 @@
             </li>
             <style>
                 .page-sidebar-menu .unread * {
-                    font-weight: bold !important;
+                    font-weight:bold !important;
                 }
             </style>
 
+
+
+            <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
+                <a href="{{ route('auth.change_password') }}">
+                    <i class="fa fa-key"></i>
+                    <span class="title">@lang('quickadmin.qa_change_password')</span>
+                </a>
+            </li>
 
             <li>
                 <a href="#logout" onclick="$('#logout').submit();">
@@ -756,8 +705,7 @@
                     <span class="title">@lang('quickadmin.qa_logout')</span>
                 </a>
             </li>
-
-        </ul><!-- /.sidebar-menu -->
+        </ul>
     </section>
-    <!-- /.sidebar -->
 </aside>
+

@@ -97,7 +97,7 @@ class VacanciesController extends Controller
         }
         
         $vacancy_titles = \App\Job::get()->pluck('job_title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        $vacancy_managers = \App\Employee::get()->pluck('employee_id', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $vacancy_managers = \App\Employee::get()->pluck('employee_email', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $vacancy_locations = \App\Nationality::get()->pluck('city', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.vacancies.create', compact('vacancy_titles', 'vacancy_managers', 'vacancy_locations'));
